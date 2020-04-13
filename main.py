@@ -76,7 +76,8 @@ cherrypy.config.update({
     'tools.staticdir.root': os.path.abspath(os.path.dirname(__file__)),
 })
 # exit()
-cherrypy.quickstart(html_server, '/')
-cherrypy.quickstart(json_server, '/json')
-
+cherrypy.tree.mount(html_server, '/')
+cherrypy.tree.mount(json_server, '/json')
+cherrypy.engine.start()
+cherrypy.engine.block()
 

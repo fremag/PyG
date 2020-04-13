@@ -26,11 +26,11 @@ class JsonServer(object):
         pass
 
     @cherrypy.expose
-    def dom_json(self, name):
+    def dom(self, name):
         return json.dumps(self.model.dom(name))
 
     @cherrypy.expose
-    def suc_json(self, name):
+    def suc(self, name):
         result = self.model.suc(name)
         l = []
         for n in result:
