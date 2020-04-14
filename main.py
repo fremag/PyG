@@ -2,8 +2,8 @@ import os
 import cherrypy
 import networkx as nx
 import matplotlib.pyplot as plt
-from Server import HtmlServer
-from Server import JsonServer
+from HtmlServer import HtmlServer
+from JsonServer import JsonServer
 
 G = nx.DiGraph()
 G.add_node('A')
@@ -26,8 +26,9 @@ G.add_edge('E', 'G')
 G.add_edge('E', 'H')
 G.add_edge('F', 'I')
 
-# G = nx.read_adjlist("e:/tmp/data2.txt", create_using=nx.DiGraph)
+G = nx.read_adjlist("e:/tmp/data2.txt", create_using=nx.DiGraph)
 
+# G = G.reverse()
 
 print("**************************************************")
 print("* Dominance                                      *")
