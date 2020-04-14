@@ -28,5 +28,5 @@ class JsonServer(object):
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def nodes(self):
-        data = [{"name": n, "url": ("/json/node/%s" % n)} for n in self.model.graph.nodes]
+        data = [{"name": n, "url": ("/node/%s" % n)} for n in self.model.graph.nodes]
         return data

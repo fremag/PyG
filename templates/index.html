@@ -25,9 +25,6 @@
             </tr>
             </thead>
             <tbody>
-            <tr py:for="node in nodes">
-                <td><a href="/node/${node}">${node}</a></td>
-            </tr>
             </tbody>
         </table>
     </div>
@@ -35,8 +32,18 @@
 
 <script>
     $(document).ready(function() {
-    $('#nodes').DataTable();
-} );
+        $.getJSON( "/json/nodes", function( data ) {
+            $('#nodes').DataTable({
+                    data: data,
+                    columns: [
+                        {data: 'name',
+                        render: function ( data, type, row ) {
+                            return '<a href="'+ row['url']+'">'+data+'</a>';
+                        }}
+                    ]
+                });
+        });
+    });
 </script>
 <div id="footer">
     <hr/>
