@@ -1,5 +1,3 @@
-import json
-
 import cherrypy
 
 from GraphModel import GraphModel
@@ -14,13 +12,21 @@ class JsonServer(object):
         pass
 
     @cherrypy.expose
+    @cherrypy.tools.json_out()
     def dom(self, name):
-        return json.dumps(self.model.dom(name))
+        return self.model.dom(name)
 
     @cherrypy.expose
+    @cherrypy.tools.json_out()
     def suc(self, name):
         result = self.model.suc(name)
         l = []
         for n in result:
             l.append(n)
-        return json.dumps(l)
+        return l
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def nodes(self):
+        data = [{"name": n, "url": ("/json/node/%s" % n)} for n in self.model.graph.nodes]
+        return data

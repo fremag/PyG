@@ -27,7 +27,6 @@ G.add_edge('E', 'H')
 G.add_edge('F', 'I')
 
 G = nx.read_adjlist("e:/tmp/data2.txt", create_using=nx.DiGraph)
-
 # G = G.reverse()
 
 print("**************************************************")
