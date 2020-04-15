@@ -13,7 +13,7 @@
 <body class="index">
 
 <div class="jumbotron text-center">
-    <h1>$title</h1>
+    <h1>$type_name</h1>
 </div>
 
 <div class="container">
@@ -21,8 +21,7 @@
         <table id="nodes" class="table table-condensed table-striped">
             <thead class="thead-dark">
             <tr>
-                <th>Nodes</th>
-                <th>Type</th>
+                <th>Node</th>
             </tr>
             </thead>
             <tbody>
@@ -33,7 +32,7 @@
 
 <script>
     $(document).ready(function() {
-        $.getJSON( "/json/nodes", function( json ) {
+        $.getJSON( "/json/type/${type_name}", function( json ) {
             $('#nodes').DataTable({
                     data: json,
                     pageLength: -1,
@@ -42,12 +41,6 @@
                             data: 'name',
                             render: function ( data, type, row ) {
                                 return '<a href="'+ row['url']+'">'+data+'</a>';
-                            }
-                        },
-                        {
-                            data: 'type',
-                            render: function ( data, type, row ) {
-                                return '<a href="'+ row['type_url']+'">'+data+'</a>';
                             }
                         }
                     ]

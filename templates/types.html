@@ -21,8 +21,8 @@
         <table id="nodes" class="table table-condensed table-striped">
             <thead class="thead-dark">
             <tr>
-                <th>Nodes</th>
                 <th>Type</th>
+                <th>Count</th>
             </tr>
             </thead>
             <tbody>
@@ -33,22 +33,19 @@
 
 <script>
     $(document).ready(function() {
-        $.getJSON( "/json/nodes", function( json ) {
+        $.getJSON( "/json/types", function( json ) {
             $('#nodes').DataTable({
                     data: json,
                     pageLength: -1,
                     columns: [
                         {
-                            data: 'name',
+                            data: 'type',
                             render: function ( data, type, row ) {
                                 return '<a href="'+ row['url']+'">'+data+'</a>';
                             }
                         },
                         {
-                            data: 'type',
-                            render: function ( data, type, row ) {
-                                return '<a href="'+ row['type_url']+'">'+data+'</a>';
-                            }
+                            data: 'count'
                         }
                     ]
                 });
