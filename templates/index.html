@@ -3,7 +3,8 @@
     <title>$title</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -21,6 +22,7 @@
             <thead class="thead-dark">
             <tr>
                 <th>Nodes</th>
+                <th>Type</th>
             </tr>
             </thead>
             <tbody>
@@ -31,15 +33,20 @@
 
 <script>
     $(document).ready(function() {
-        $.getJSON( "/json/nodes", function( data ) {
+        $.getJSON( "/json/nodes", function( json ) {
             $('#nodes').DataTable({
-                    data: data,
+                    data: json,
                     pageLength: -1,
                     columns: [
-                        {data: 'name',
-                        render: function ( data, type, row ) {
-                            return '<a href="'+ row['url']+'">'+data+'</a>';
-                        }}
+                        {
+                            data: 'name',
+                            render: function ( data, type, row ) {
+                                return '<a href="'+ row['url']+'">'+data+'</a>';
+                            }
+                        },
+                        {
+                            data: 'type'
+                        }
                     ]
                 });
         });

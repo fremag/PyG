@@ -20,13 +20,15 @@ class JsonServer(object):
     @cherrypy.tools.json_out()
     def suc(self, name):
         result = self.model.suc(name)
-        l = []
-        for n in result:
-            l.append(n)
-        return l
+        successors = list(result)
+        return successors
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def nodes(self):
-        data = [{"name": n, "url": ("/node/%s" % n)} for n in self.model.graph.nodes]
+        nodes = list(self.model.graph.nodes(data='type'))
+        data = []
+        for n in nodes:
+            node = {"name": n[0], "url": ("/node/%s" % n[0]), "type": n[1]}
+            data.append(node)
         return data
