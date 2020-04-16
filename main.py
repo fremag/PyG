@@ -91,7 +91,6 @@ for n in nodes:
 # plt.show()
 
 html_server = HtmlServer()
-html_server.init(G)
 
 json_server = JsonServer()
 json_server.init(G)
