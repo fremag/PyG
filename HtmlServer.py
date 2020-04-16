@@ -12,10 +12,10 @@ class HtmlServer(object):
             os.path.join(os.path.dirname(__file__), 'templates'),
             auto_reload=True
         )
-        self.template = self.loader.load('main.html')
 
     def render(self, title, content, **kwargs):
-        return self.template.generate(title=title, content=content, **kwargs).render('html', doctype='html')
+        template = self.loader.load('main.html')
+        return template.generate(title=title, content=content, **kwargs).render('html', doctype='html')
 
     @cherrypy.expose
     def index(self):
