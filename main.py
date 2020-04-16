@@ -97,9 +97,12 @@ json_server = JsonServer()
 json_server.init(G)
 
 cherrypy.config.update({
-    'tools.encode.on': True, 'tools.encode.encoding': 'utf-8',
+    'tools.encode.on': True,
     'tools.decode.on': True,
+    'tools.encode.encoding': 'utf-8',
     'tools.trailing_slash.on': True,
+    'tools.staticdir.on': True,
+    'tools.staticdir.dir': "static",
     'tools.staticdir.root': os.path.abspath(os.path.dirname(__file__)),
 })
 # exit()
