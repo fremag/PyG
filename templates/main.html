@@ -7,21 +7,22 @@
 <div class="jumbotron text-center">
     <h1>$title</h1>
 </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">GraphExp</a>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="/types">Types</a></li>
-      <li class="nav-item"><a class="nav-link" href="/A">AAA</a></li>
-      <li class="nav-item"><a class="nav-link" href="/B">BBB</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Nodes</a>
+                    <a class="nav-link" href="/types">Types</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-<div class="container">
-    <xi:include href="$content"/>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <xi:include href="$content"/>
+    </main>
 </div>
-
 <div id="footer">
     <hr/>
     <p class="legalese">© 2020 fremag</p>

@@ -19,15 +19,15 @@ class HtmlServer(object):
 
     @cherrypy.expose
     def index(self):
-        return self.render('Graph Explorer', 'index.html')
+        return self.render('Nodes', 'index.html')
 
     @cherrypy.expose
     def types(self):
-        return self.render('Type stats', 'types.html')
+        return self.render('Type', 'types.html')
 
     @cherrypy.expose
     def type(self, type_name):
-        return self.render("Type info", 'type.html', type_name=type_name)
+        return self.render("Type : %s" % type_name, 'type.html', type_name=type_name)
 
     @cherrypy.expose
     def node(self, name):
