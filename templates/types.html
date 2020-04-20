@@ -1,7 +1,7 @@
 <div>
 <div class="container">
     <div class="row">
-        <table id="nodes" class="table table-condensed table-striped">
+        <table id="nodes" class="$table_style">
             <thead class="thead-dark">
             <tr>
                 <th>Type</th>
@@ -19,6 +19,7 @@
         $.getJSON( "/json/types", function( json ) {
             $('#nodes').DataTable({
                     data: json,
+                    order: [[ 1, "desc" ]],
                     pageLength: -1,
                     columns: [
                         {

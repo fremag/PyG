@@ -54,11 +54,11 @@ print("* Dominance                                      *")
 print("**************************************************")
 dom = nx.dominating_set(G)
 
-# for n in G:
-#    imm_dom = nx.immediate_dominators(G, n)
-#    if len(imm_dom) > 0:
-#        print("Node: %s : %i" % (n, len(imm_dom) - 1))
-#        print(sorted([s[0] for s in imm_dom if s[0] != n]))
+for n in G:
+    imm_dom = nx.immediate_dominators(G, n)
+    if len(imm_dom) > 0:
+        print("Node: %s : %i" % (n, len(imm_dom) - 1))
+        print(sorted([s for s in imm_dom if s != n]))
 
 print("**************************************************")
 print("* Ranks                                          *")

@@ -16,3 +16,18 @@ class GraphModel(object):
     def nodes(self):
         return self.graph.nodes()
 
+    def dominating_set(self):
+        dom = nx.dominating_set(self.graph)
+        data = {}
+        for n in dom:
+            imm_dom = self.immediate_dominators(n)
+            data[n] = len(imm_dom) - 1
+        return data
+
+    def immediate_dominators(self, node):
+        return nx.immediate_dominators(self.graph, node)
+
+    def info(self, name):
+        node = self.graph.nodes[name]
+        node_type = node['type']
+        return {'name': name, 'type': node_type, "url": ("/node/%s" % name), "type_url": ("/type/%s" % node_type)}

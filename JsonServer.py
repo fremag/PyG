@@ -58,6 +58,31 @@ class JsonServer(object):
         nodes = [n for n in list(self.model.graph.nodes(data='type')) if n[1] == type_name]
         data = []
         for n in nodes:
-            node = {"name": n[0], "url": ("/node/%s" % n[0]), "type": n[1], "type_url": ("/type/%s" % n[1])}
-            data.append(node)
+            name = n[0]
+            info = self.model.info(name)
+            data.append(info)
         return data
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def dom_set(self):
+        dom = self.model.dominating_set()
+        data = []
+        for name in dom:
+            info = self.model.info(name)
+            info['dom'] = dom[name]
+            info['dom_url'] = "/json/dom/"+name
+            data.append(info)
+        return data
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def imm_dom(self, node):
+        dom = self.model.immediate_dominators(node)
+        return dom
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def node(self, name):
+        node = self.model.info(name)
+        return node

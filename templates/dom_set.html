@@ -2,8 +2,9 @@
     <table id="nodes" class="$table_style">
         <thead class="thead-dark">
         <tr>
-            <th>Nodes</th>
+            <th>Node</th>
             <th>Type</th>
+            <th>Dominates</th>
         </tr>
         </thead>
         <tbody>
@@ -12,10 +13,11 @@
 
 <script>
     $(document).ready(function() {
-        $.getJSON( "/json/nodes", function( json ) {
+        $.getJSON( "/json/dom_set", function( json ) {
             $('#nodes').DataTable({
                     data: json,
                     pageLength: -1,
+                    order: [[ 2, "desc" ]],
                     columns: [
                         {
                             data: 'name',
@@ -27,6 +29,12 @@
                             data: 'type',
                             render: function ( data, type, row ) {
                                 return '<a href="'+ row['type_url']+'">'+data+'</a>';
+                            }
+                        },
+                        {
+                            data: 'dom',
+                            render: function ( data, type, row ) {
+                                return '<a href="'+ row['dom_url']+'">'+data+'</a>';
                             }
                         }
                     ]

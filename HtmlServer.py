@@ -15,7 +15,7 @@ class HtmlServer(object):
 
     def render(self, title, content, **kwargs):
         template = self.loader.load('main.html')
-        return template.generate(title=title, content=content, **kwargs).render('html', doctype='html')
+        return template.generate(title=title, content=content, table_style="display", **kwargs).render('html', doctype='html')
 
     @cherrypy.expose
     def index(self):
@@ -23,7 +23,7 @@ class HtmlServer(object):
 
     @cherrypy.expose
     def types(self):
-        return self.render('Type', 'types.html')
+        return self.render('Types', 'types.html')
 
     @cherrypy.expose
     def type(self, type_name):
@@ -32,3 +32,7 @@ class HtmlServer(object):
     @cherrypy.expose
     def node(self, name):
         return self.render("Node info", 'node.html', name=name)
+
+    @cherrypy.expose
+    def dom_set(self):
+        return self.render("Dominating set", 'dom_set.html')
