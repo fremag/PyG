@@ -3,12 +3,13 @@
       xmlns:xi="http://www.w3.org/2001/XInclude">
 
 <xi:include href="head.html"/>
-<body class="bg-dark text-light">
+<body>
 <div class="jumbotron text-center bg-dark text-light">
     <h1>$title</h1>
 </div>
 <div class="row">
-    <nav class="col sidebar">
+<!-- Nav BAR !-->
+    <nav class="col sidebar bg-dark text-light">
         <div class="sidebar-sticky">
             <ul class="nav flex-column">
                 <li class="nav-item">
@@ -19,10 +20,11 @@
             </ul>
         </div>
     </nav>
-
+<!-- Start - CONTENT !-->
     <main role="main" class="col ml-sm-auto col-lg-10">
         <xi:include href="$content"/>
     </main>
+<!-- End - CONTENT !-->
 </div>
 <div id="footer">
     <hr/>

@@ -11,7 +11,7 @@ class GraphModel(object):
 
     def dom(self, name):
         dom = nx.immediate_dominators(self.graph, name)
-        return [n[0] for n in dom]
+        return [n for n in dom]
 
     def nodes(self):
         return self.graph.nodes()

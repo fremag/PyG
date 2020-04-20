@@ -71,7 +71,7 @@ class JsonServer(object):
         for name in dom:
             info = self.model.info(name)
             info['dom'] = dom[name]
-            info['dom_url'] = "/json/dom/"+name
+            info['dom_url'] = "/json/imm_dom/"+name
             data.append(info)
         return data
 
