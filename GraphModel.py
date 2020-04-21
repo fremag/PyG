@@ -39,3 +39,28 @@ class GraphModel(object):
         node = self.graph.nodes[name]
         node_type = node['type']
         return {'name': name, 'type': node_type, "url": ("/node/%s" % name), "type_url": ("/type/%s" % node_type)}
+
+    def ranks(self):
+        ranks = {}
+        level = 0
+        for node in self.graph.nodes():
+            if len(list(self.graph.successors(node))) == 0:
+                ranks[node] = 0
+
+        while len(ranks) != self.graph.number_of_nodes():
+            level += 1
+            self.rank_node_level(level, ranks)
+
+        return ranks
+
+    def rank_node_level(self, level, ranks):
+        for node in self.graph.nodes():
+            if node in ranks:
+                continue
+            successors = list(self.graph.successors(node))
+            n = 0
+            for successor in successors:
+                if successor in ranks:
+                    n += 1
+            if n == len(successors):
+                ranks[node] = level

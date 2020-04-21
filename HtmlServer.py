@@ -40,3 +40,7 @@ class HtmlServer(object):
     @cherrypy.expose
     def imm_dom(self, name):
         return self.render("Immediate dominators: "+name, 'imm_dom.html', name=name)
+
+    @cherrypy.expose
+    def ranks(self):
+        return self.render("Ranks", 'ranks.html')

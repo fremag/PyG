@@ -110,3 +110,14 @@ class JsonServer(object):
     def node(self, name):
         node = self.model.info(name)
         return node
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def ranks(self):
+        ranks = self.model.ranks()
+        data = []
+        for node, rank in ranks.items():
+            info = self.model.info(node)
+            info["rank"] = rank
+            data.append(info)
+        return data
