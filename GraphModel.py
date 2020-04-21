@@ -27,6 +27,14 @@ class GraphModel(object):
     def immediate_dominators(self, node):
         return nx.immediate_dominators(self.graph, node)
 
+    def succ(self, node):
+        succ = self.graph.successors(node)
+        return succ
+
+    def pre(self, node):
+        pre = self.graph.predecessors(node)
+        return pre
+
     def info(self, name):
         node = self.graph.nodes[name]
         node_type = node['type']

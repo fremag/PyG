@@ -79,7 +79,31 @@ class JsonServer(object):
     @cherrypy.tools.json_out()
     def imm_dom(self, node):
         dom = self.model.immediate_dominators(node)
-        return dom
+        data = []
+        for name in dom:
+            info = self.model.info(name)
+            data.append(info)
+        return data
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def succ(self, node):
+        successors = self.model.succ(node)
+        data = []
+        for name in successors:
+            info = self.model.info(name)
+            data.append(info)
+        return data
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def pre(self, node):
+        predecessors = self.model.pre(node)
+        data = []
+        for name in predecessors:
+            info = self.model.info(name)
+            data.append(info)
+        return data
 
     @cherrypy.expose
     @cherrypy.tools.json_out()

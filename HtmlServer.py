@@ -36,3 +36,7 @@ class HtmlServer(object):
     @cherrypy.expose
     def dom_set(self):
         return self.render("Dominating set", 'dom_set.html')
+
+    @cherrypy.expose
+    def imm_dom(self, name):
+        return self.render("Immediate dominators: "+name, 'imm_dom.html', name=name)
