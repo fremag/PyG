@@ -37,7 +37,7 @@ for line in open("e:/tmp/data.txt"):
     if nb == "0":
         continue
     type = items[2].strip()
- #   print("%s: %s, %s, %i" % (node, nb, type, len(items[3:])))
+    #   print("%s: %s, %s, %i" % (node, nb, type, len(items[3:])))
     G.add_node(node, type=type)
     for edge in items[3:]:
         if edge != '':
@@ -45,26 +45,25 @@ for line in open("e:/tmp/data.txt"):
             edges.append([node, strip])
 
 for edge in edges:
-#    print("'%s' : '%s'" % (edge[0], edge[1]))
+    #    print("'%s' : '%s'" % (edge[0], edge[1]))
     G.add_edge(edge[0], edge[1])
-
 
 print("**************************************************")
 print("* Dominance                                      *")
 print("**************************************************")
 dom = nx.dominating_set(G)
 
-for n in G:
-    imm_dom = nx.immediate_dominators(G, n)
-    if len(imm_dom) > 0:
-        print("Node: %s : %i" % (n, len(imm_dom) - 1))
-        print(sorted([s for s in imm_dom if s != n]))
+# for n in G:
+#     imm_dom = nx.immediate_dominators(G, n)
+#     if len(imm_dom) > 0:
+#         print("Node: %s : %i" % (n, len(imm_dom) - 1))
+#         print(sorted([s for s in imm_dom if s != n]))
 
 print("**************************************************")
 print("* Ranks                                          *")
 print("**************************************************")
-#ranks = nx.voterank(G)
-#print(ranks)
+# ranks = nx.voterank(G)
+# print(ranks)
 
 print("**************************************************")
 print("* Histogram                                      *")
@@ -72,12 +71,11 @@ print("**************************************************")
 histo = nx.degree_histogram(G)
 print(histo)
 
-
 print("**************************************************")
 print("* Info                                           *")
 print("**************************************************")
 info = nx.info(G)
-#print(info)
+# print(info)
 print("**************************************************")
 print("* TEST                                           *")
 print("**************************************************")
@@ -95,18 +93,21 @@ html_server = HtmlServer()
 json_server = JsonServer()
 json_server.init(G)
 
+# exit()
+root = os.path.abspath(os.path.dirname(__file__))
+config = {'/static': {'tools.staticdir.on': True,
+                      'tools.staticdir.dir': "static",
+                      'tools.staticdir.root': root}
+          }
+
+cherrypy.tree.mount(html_server, '/', config)
+cherrypy.tree.mount(json_server, '/json')
 cherrypy.config.update({
     'tools.encode.on': True,
     'tools.decode.on': True,
     'tools.encode.encoding': 'utf-8',
-    'tools.trailing_slash.on': True,
-    'tools.staticdir.on': True,
-    'tools.staticdir.dir': "static",
-    'tools.staticdir.root': os.path.abspath(os.path.dirname(__file__)),
+    'tools.trailing_slash.on': True
 })
-# exit()
-cherrypy.tree.mount(html_server, '/')
-cherrypy.tree.mount(json_server, '/json')
+
 cherrypy.engine.start()
 cherrypy.engine.block()
-

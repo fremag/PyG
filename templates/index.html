@@ -1,37 +1,6 @@
-<div>
-    <table id="nodes" class="$table_style">
-        <thead class="thead-dark">
-        <tr>
-            <th>Nodes</th>
-            <th>Type</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
-<script>
-    $(document).ready(function() {
-        $.getJSON( "/json/nodes", function( json ) {
-            $('#nodes').DataTable({
-                    data: json,
-                    pageLength: -1,
-                    columns: [
-                        {
-                            data: 'name',
-                            render: function ( data, type, row ) {
-                                return '<a href="'+ row['url']+'">'+data+'</a>';
-                            }
-                        },
-                        {
-                            data: 'type',
-                            render: function ( data, type, row ) {
-                                return '<a href="'+ row['type_url']+'">'+data+'</a>';
-                            }
-                        }
-                    ]
-                });
-        });
-    });
-</script>
+<div id="main">
+    <script src="/static/scripts/nodeTable.js"/>
+    <script>
+        CreateNodeTable("main");
+    </script>
 </div>
