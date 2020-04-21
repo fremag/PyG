@@ -1,20 +1,20 @@
-function CreateNodeTable(id, tableId ="nodeTable", style="display") {
+function CreateNodeTable(id, jsonSrc = "/json/nodes", tableId ="nodeTable", style="display") {
     var mainElement = document.getElementById(id);
 
     var nodeTable = document.createElement("table");
     nodeTable.setAttribute("id", tableId);
     nodeTable.setAttribute("class", style);
-nodeTable.innerHTML = "<thead class=\"thead-dark\">"
+nodeTable.innerHTML = "<thead class='thead-dark'>"
 +"        <tr>"
 +"            <th>Nodes</th>"
 +"            <th>Type</th>"
 +"        </tr>"
-+"        </thead>"
-+"        <tbody>"
-+"       </tbody>";
++"        </thead>";
+
+
 
     $(document).ready(function() {
-        $.getJSON( "/json/nodes", function( json ) {
+        $.getJSON( jsonSrc, function( json ) {
             $('#'+tableId).DataTable({
                     data: json,
                     pageLength: -1,
