@@ -121,3 +121,9 @@ class JsonServer(object):
             info["rank"] = rank
             data.append(info)
         return data
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def tree(self, name):
+        data, node_id = self.model.build_tree(name, 0)
+        return [data]

@@ -44,3 +44,7 @@ class HtmlServer(object):
     @cherrypy.expose
     def ranks(self):
         return self.render("Ranks", 'ranks.html')
+
+    @cherrypy.expose
+    def tree(self, name):
+        return self.render("Tree", 'tree.html', name=name)

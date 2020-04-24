@@ -12,6 +12,18 @@
 
     <div class="tab-content">
         <div id="info" class="tab-pane active">
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $('#info').tree({
+                    uiLibrary: 'bootstrap4',
+                    dataSource: '/json/tree/$name',
+                    primaryKey: 'id',
+                    imageUrlField: 'flagUrl'
+                });
+            });
+
+    </script>
+
         </div>
         <div id="pre" class="tab-pane">
             <script>
