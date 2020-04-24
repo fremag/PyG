@@ -11,33 +11,38 @@
     </ul>
 
     <div class="tab-content">
+        <button class="btn btn-primary" onclick="tree.expandAll()">Expand All</button>
+        <button class="btn btn-primary" onclick="tree.collapseAll()">Collapse All</button>
+        <br/>
         <div id="info" class="tab-pane active">
-    <script type="text/javascript">
-            $(document).ready(function () {
-                $('#info').tree({
+            <script type="text/javascript">
+                var tree = $('#info').tree({
                     uiLibrary: 'bootstrap4',
                     dataSource: '/json/tree/$name',
-                    primaryKey: 'id',
-                    imageUrlField: 'flagUrl'
+                    primaryKey: 'id'
                 });
-            });
-
-    </script>
+            </script>
 
         </div>
         <div id="pre" class="tab-pane">
             <script>
                 CreateNodeTable("pre", "/json/pre/${name}", "preTable");
+
+
             </script>
         </div>
         <div id="succ" class="tab-pane">
             <script>
                 CreateNodeTable("succ", "/json/succ/${name}", "succTable");
+
+
             </script>
         </div>
         <div id="dom" class="tab-pane">
             <script>
                 CreateNodeTable("dom", "/json/imm_dom/${name}", "domTable");
+
+
             </script>
         </div>
     </div>
